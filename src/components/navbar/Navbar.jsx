@@ -12,6 +12,7 @@ const Nav = styled.div`
   background-image: url('../public/baner.png');
   position: sticky;
   top: 0;
+  transition: all 1s;
 
   div.navContent {
     width: 100%;
@@ -50,6 +51,36 @@ const Nav = styled.div`
   }
   `;
 
+const Img = styled.img`
+    width: 40px;
+    height: 40px;
+  `;
+
+const ConLogo = styled.div`
+    /* width: 30px; */
+    display: flex ;
+    overflow: hidden;
+    align-items: center;
+    div {
+      display: flex;
+      align-items: center;
+      height: 0px;
+      overflow: hidden;
+      transition: all 1s;
+    }
+
+    &:hover {
+      div {
+        height: 30px;
+      }
+    }
+  `;
+
+const Titulo = styled.h1`
+  position: relative;
+  overflow: hidden;
+`;
+
 
 export default function Navbar(props) {
 
@@ -57,7 +88,12 @@ export default function Navbar(props) {
     <Nav>
       <div className="navContent" >
         <NavLink to="/home" className={({ isActive }) => (isActive ? estilos.active : estilos.desactive)}>
-          <h1 className='title'>Archivos Rick and Morty</h1>
+          <ConLogo>
+            <Img src="https://i.redd.it/2e99wgj1lei31.jpg" alt="" />
+            <div className="">
+            <Titulo className='title'>Archivos Rick and Morty</Titulo>
+            </div>
+          </ConLogo>
         </NavLink>
         <div className="destiny">
           <NavLink to="/home" className={({ isActive }) => (isActive ? estilos.active : estilos.desactive)}>Home</NavLink>

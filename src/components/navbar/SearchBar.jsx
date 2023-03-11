@@ -17,16 +17,20 @@ const Entrada = styled.input`
 
 const Boton = styled.button`
    border-radius: 8px;
+   border: 2px solid #49c877 ;
    font-size: 15px;
    padding: .25rem 1rem;
-   background: #024312;
-   color: beige;
+   background: #141414;
+   color: #49c877;
    font-weight: bold;
    cursor: pointer;
    transition: all .5s;
 
    &:hover {
-      background: #058a26;
+      background: #49c877;
+      color: #141414;
+      border: 2px solid #141414;
+      outline: 1px solid #49c877;
    }
 `;
 

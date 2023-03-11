@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -7,7 +7,6 @@ const Container = styled.div`
     margin-top: 40px;
     text-align: center;
     color: #5fff96;
-    -webkit-text-stroke: 1px black;
 
     h1 {
         text-align: left;
@@ -42,10 +41,32 @@ const Container = styled.div`
     }
 `;
 
+const Button = styled.button`
+    margin: 40px 0 0 0;
+   border-radius: 8px;
+   border: 2px solid #49c877 ;
+   font-size: 15px;
+   padding: .25rem 1rem;
+   background: #141414;
+   color: #49c877;
+   font-weight: bold;
+   cursor: pointer;
+   transition: all .5s;
+
+   &:hover {
+      background: #49c877;
+      color: #141414;
+      border: 2px solid #141414;
+      outline: 1px solid #49c877;
+   }
+`;
+
 export default function Detail(props) {
     // console.log(useParams());
     const { detailId } = useParams();
     const [character, setCharacter] = useState({});
+    const navigate =  useNavigate();
+    const volver = () => navigate(-1);
 
     useEffect(() => {
         fetch(`https://rickandmortyapi.com/api/character/${detailId}`)
@@ -62,7 +83,7 @@ export default function Detail(props) {
                 window.alert("No hay personajes con ese ID");
             });
         return setCharacter({});
-    }, [])
+    }, [detailId])
 
     return (
         <Container>
@@ -76,6 +97,7 @@ export default function Detail(props) {
                 <p>Origin: {character.origin?.name}</p>
             </div>
             </div>
+            <Button onClick={volver}>volver</Button>
         </Container>
     );
 }
