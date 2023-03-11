@@ -1,0 +1,13 @@
+.active {
+  color: #0ac74c;
+  text-decoration: none;
+  font-weight: bold;
+  margin: 0 15px;
+}
+
+.desactive {
+    color: #064d1f;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 0 15px;
+}
