@@ -8,15 +8,25 @@ const Container = styled.div`
 `;
 
 const Entrada = styled.input`
-   border-radius: 8px;
-   padding: .25rem 1rem;
-   font-size: 15px;
-   margin: 0 1rem;
+   width: 150px;
+   border-radius: 8px 0 0 8px;
+   padding: 4px 0;
+   text-align: center;
+   border: 2px solid #48c976;
+   background-color: #141414;
+   outline: 2px solid #141414;
+   color: #48c976;
    font-weight: bold;
-   `;
+   font-size: 15px;
+
+   @media (max-width: 1080px){
+      width: 100px;
+   }
+`;
 
 const Boton = styled.button`
-   border-radius: 8px;
+   border-radius: 0 8px 8px 0;
+   margin-left: -2px;
    border: 2px solid #49c877 ;
    font-size: 15px;
    padding: .25rem 1rem;
@@ -34,18 +44,26 @@ const Boton = styled.button`
    }
 `;
 
-export default function SearchBar(props) {
+export default function SearchBar({ onSearch }) {
 
    const [character, setCharacter] = useState("");
 
-   const handleInputChange = (event) =>{
-      const {value} = event.target;
+   const handleInputChange = (event) => {
+      const { value } = event.target;
       setCharacter(value);
    };
+
+   const handleSubmit = (event) => {
+      event.preventDefault();
+      setCharacter("");
+   };
+
    return (
       <Container>
-         <Entrada placeholder="Inserte ID del personaje " type='search' onChange = {handleInputChange} />
-         <Boton onClick={() => props.onSearch(character)}>Agregar</Boton>
+         <form action="" onSubmit={handleSubmit}>
+            <Entrada placeholder="Insert Id... " type='search' onChange={handleInputChange} value={character} />
+            <Boton onClick={() => onSearch(character)} type="submit">Add</Boton>
+         </form>
       </Container>
    );
 }

@@ -26,6 +26,10 @@ const Nav = styled.div`
     @media (max-width: 1080px){
       max-width: 90%;
     }
+    @media (max-width: 720px){
+      justify-content: center;
+      max-width: 90%;
+    }
   }
 
   div.destiny {
@@ -37,7 +41,8 @@ const Nav = styled.div`
   h1.title {
     /* position: absolute; */
     margin: 0 20px;
-    font-size: calc(1px + 1.5vw) ;
+    /* font-size: calc(1px + 1.5vw) ; */
+    font-size: 20px;
     font-weight: bold;
     color: #5fff96;
     font-family: 'Comic Neue';
@@ -74,6 +79,11 @@ const ConLogo = styled.div`
         height: 30px;
       }
     }
+    @media (max-width: 576px){
+      div {
+        height: 30px;
+      }
+    }
   `;
 
 const Titulo = styled.h1`
@@ -84,23 +94,28 @@ const Titulo = styled.h1`
 
 export default function Navbar(props) {
 
-  return (
-    <Nav>
-      <div className="navContent" >
-        <NavLink to="/home" className={({ isActive }) => (isActive ? estilos.active : estilos.desactive)}>
-          <ConLogo>
-            <Img src="https://i.redd.it/2e99wgj1lei31.jpg" alt="" />
-            <div className="">
-            <Titulo className='title'>Archivos Rick and Morty</Titulo>
-            </div>
-          </ConLogo>
-        </NavLink>
-        <div className="destiny">
-          <NavLink to="/home" className={({ isActive }) => (isActive ? estilos.active : estilos.desactive)}>Home</NavLink>
-          <NavLink to="/about" className={({ isActive }) => (isActive ? estilos.active : estilos.desactive)}>About</NavLink>
-          <SearchBar onSearch={(el) => props.onSearch(el)} />
+  const log = props.checkLogin
+
+  if (log) {
+    return (
+      <Nav>
+        <div className="navContent" >
+          <NavLink to="/home" className={({ isActive }) => (isActive ? estilos.active : estilos.desactive)}>
+            <ConLogo>
+              <Img src="https://i.redd.it/2e99wgj1lei31.jpg" alt="" />
+              <div className="">
+                <Titulo className='title'>Rick & Morty files</Titulo>
+              </div>
+            </ConLogo>
+          </NavLink>
+          <div className="destiny">
+            <NavLink to="/home" className={({ isActive }) => (isActive ? estilos.active : estilos.desactive)}>Home</NavLink>
+            <NavLink to="/about" className={({ isActive }) => (isActive ? estilos.active : estilos.desactive)}>About</NavLink>
+            <SearchBar onSearch={(el) => props.onSearch(el)} />
+          </div>
         </div>
-      </div>
-    </Nav>
-  )
+      </Nav>
+    )
+
+  }
 }

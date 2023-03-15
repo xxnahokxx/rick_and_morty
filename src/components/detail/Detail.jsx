@@ -39,7 +39,16 @@ const Container = styled.div`
         object-fit: cover;
         border-radius: 10px;
     }
-`;
+    @media (max-width: 720px) {
+        h1{
+            font-size: 25px;
+            text-align: center;
+        }
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    `;
 
 const Button = styled.button`
     margin: 40px 0 0 0;
@@ -65,7 +74,7 @@ export default function Detail(props) {
     // console.log(useParams());
     const { detailId } = useParams();
     const [character, setCharacter] = useState({});
-    const navigate =  useNavigate();
+    const navigate = useNavigate();
     const volver = () => navigate(-1);
 
     useEffect(() => {
@@ -87,15 +96,17 @@ export default function Detail(props) {
 
     return (
         <Container>
-                <h1>Name: {character.name}</h1>
-            <div className="">
-            <img src={character.image} alt="" />
-            <div className="">
-                <p>Status: {character.status}</p>
-                <p>Species: {character.species}</p>
-                <p>Gender: {character.gender}</p>
-                <p>Origin: {character.origin?.name}</p>
-            </div>
+            <div>
+                <div className="card">
+            <h1>Name: {character.name}</h1>
+                    <img src={character.image} alt="" />
+                    <div className="">
+                        <p>Status: {character.status}</p>
+                        <p>Species: {character.species}</p>
+                        <p>Gender: {character.gender}</p>
+                        <p>Origin: {character.origin?.name}</p>
+                    </div>
+                </div>
             </div>
             <Button onClick={volver}>volver</Button>
         </Container>
