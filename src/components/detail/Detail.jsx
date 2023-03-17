@@ -108,7 +108,7 @@ export default function Detail(props) {
                     </div>
                 </div>
             </div>
-            <Button onClick={volver}>volver</Button>
+            <Button onClick={volver}>Back</Button>
         </Container>
     );
 }

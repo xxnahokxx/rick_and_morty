@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import validation from "./validation";
 import styled from "styled-components";
-import logo from "../img/logo.png";
+import logo from "../assets/img/logo.png";
 
 const Formulario = styled.form`
     margin: auto;
