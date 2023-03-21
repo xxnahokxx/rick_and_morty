@@ -1,5 +1,9 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { addFavorite, deleteFavorite } from "../../reducer/actions";
+import { connect } from "react-redux";
+import { useEffect, useState } from "react";
+import { FavOff, FavOn } from "../assets/styledComponent/styledComponents";
 
 
 const ContentCard = styled.div`
@@ -104,15 +108,50 @@ const Image = styled.img`
 `
 
 
-export default function Card({ name, species, gender, image, onClose, id }) {
+function Card({ name, species, gender, image, onClose, id, addFavorite, deleteFavorite, myFavorites }) {
 
+   // este estado es mas que nada para poder actualizar la visualizacion del corazon que indica si esta o no en favoritos.
+   const [isFav, setIsFav] = useState(false);
 
+   // el useEffect lo principal que hace es validar si alguno de las cards que se estan renderizando en el momento esta en el arreglo de favoritos, de ser asi le actualiza el estado a isFav a true seteandole el valor.
+   useEffect(() => {
+      myFavorites.forEach((fav) => {
+         if (fav.id === id) {
+            setIsFav(true);
+         }
+      });
+   // eslint-disable-next-line react-hooks/exhaustive-deps
+   }, [myFavorites]);
+
+   // con handleFavorite se le da la indicacion, la funcionalidad al boton de favoritos para que cambie su estado de verdadero a falso y en viseversa.
+   const handleFavorite = () => {
+      if (isFav) {
+         setIsFav(false);
+         deleteFavorite(id);
+      } else {
+         setIsFav(true);
+         addFavorite({ name, species, gender, image, onClose, id, addFavorite, deleteFavorite });
+      }
+   }
    return (
 
       <ContentCard>
          <Tarjeta>
             <Head>
-               <Boton onClick={onClose}>X</Boton>
+               {/* de manera condicional se le dice a la app que renderice el boton de cerrar la card solo si no es favorito. */}
+               {isFav ? null : <Boton onClick={onClose}>X</Boton>}
+               {/* se esta haciendo un renderizado condicional del boton, en caso de que este o no en favoritos se muestra en rojo o en blanco. */}
+               {
+                  isFav ? (
+                     <FavOn onClick={handleFavorite}><span className="material-symbols-rounded" styled={{FILL: 1}}>
+                     favorite
+                     </span></FavOn>
+                  ) : (
+                     <FavOff onClick={handleFavorite}><span className="material-symbols-rounded">
+                     favorite
+                     </span></FavOff>
+                  )
+               }
                <Nombre className="nombre">{name}</Nombre>
             </Head>
             <Body className="des">
@@ -126,3 +165,23 @@ export default function Card({ name, species, gender, image, onClose, id }) {
       </ContentCard>
    );
 }
+
+const mapDispatchToProps = (dispatch) => {
+   return {
+      addFavorite: (character) => {
+         dispatch(addFavorite(character))
+      },
+      deleteFavorite: (id) => {
+         dispatch(deleteFavorite(id))
+      },
+   }
+};
+
+const mapStateToProps = (state) => {
+   return {
+      myFavorites: state.myFavorites,
+   }
+};
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(Card);

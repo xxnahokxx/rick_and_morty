@@ -8,6 +8,8 @@ import About from './components/about/About';
 import Detail from './components/detail/Detail';
 import Form from './components/form/Form';
 import Footer from './components/footer/Footer';
+import Favorites from './components/favorites/Favorites';
+import { Grupo } from './components/assets/styledComponent/styledComponents';
 
 
 
@@ -34,33 +36,7 @@ const Container = styled.div`
   align-items: center;
   `; */
 
-const Grupo = styled.div`
-  display: flex;
-  justify-content: center;
 
-  > div {
-    max-width: 1200px ;
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    /* grid-auto-rows: minmax(100px, auto); */
-    justify-items: center;
-    flex-wrap: wrap;
-
-    @media (max-width:1200px){
-      grid-template-columns: repeat(3, 1fr);
-      max-width: 992px ;
-    }
-    @media (max-width:992px){
-      grid-template-columns: repeat(2, 1fr);
-      max-width: 768px ;
-    }
-    @media (max-width:576px){
-      grid-template-columns: repeat(1, 1fr);
-      max-width: 768px ;
-    }
-
-  }
-  `;
 
 function App() {
 
@@ -80,6 +56,7 @@ function App() {
 
   useEffect(() => {
     !access && navigate("/");
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [access]);
 
   const onSearch = (id) => {
@@ -135,6 +112,12 @@ function App() {
 
         <Route path="/about" element={
           <About />
+        }></Route>
+
+        <Route path="/favorites" element={
+          <Grupo>
+            <Favorites />
+          </Grupo>
         }></Route>
 
         <Route path="/detail/:detailId" element={

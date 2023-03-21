@@ -32,6 +32,7 @@ const Formulario = styled.form`
             font-size: large;
             font-weight: bold;
             text-align: right;
+            text-shadow: 0 0 3px rgb(0, 0, 0) ;
             /* -webkit-text-stroke: 1px #141414; */
         }
     }

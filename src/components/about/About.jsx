@@ -5,6 +5,10 @@ const Container = styled.div`
     text-align: center;
     width: 100%;
     color: #fff;
+
+    h1 {
+        text-shadow: 0 0 3px rgb(0, 0, 0) ;
+    }
 `;
 
 export default function About (props) {
