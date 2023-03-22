@@ -2,7 +2,9 @@ import React from "react";
 import SearchBar from "./SearchBar";
 import { NavLink } from "react-router-dom";
 import estilos from "./navbar.module.css";
-import {Nav, ConLogo, Titulo, Img} from "../assets/styledComponent/styledComponents.js"
+import {Nav, ConLogo, Titulo, Img, Boton} from "../assets/styledComponent/styledComponents.js"
+import { connect } from "react-redux";
+import { logOut } from "../../reducer/actions";
 
 
 
@@ -15,7 +17,7 @@ const NavLinkMe = ({to, children, ...props}) => {
 };
 
 
-export default function Navbar(props) {
+function Navbar(props) {
 
   const log = props.checkLogin
 
@@ -36,6 +38,7 @@ export default function Navbar(props) {
             <NavLinkMe to="/about">About</NavLinkMe>
             <NavLinkMe to="/favorites">Favorites</NavLinkMe>
             <SearchBar onSearch={(el) => props.onSearch(el)} />
+            {props.loginG ? <Boton onClick={props.logOut}>LogOut</Boton> : null}
           </div>
         </div>
       </Nav>
@@ -43,3 +46,17 @@ export default function Navbar(props) {
 
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    loginG: state.loginG
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logOut:() => dispatch(logOut()),
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Navbar);

@@ -10,6 +10,8 @@ import Form from './components/form/Form';
 import Footer from './components/footer/Footer';
 import Favorites from './components/favorites/Favorites';
 import { Grupo } from './components/assets/styledComponent/styledComponents';
+import { connect } from 'react-redux';
+import { logIn, logOut } from './reducer/actions';
 
 
 
@@ -38,26 +40,29 @@ const Container = styled.div`
 
 
 
-function App() {
+function App({ loginG, logIn }) {
+
 
   const [characters, setCharacters] = useState([]);
-  const [access, setAccess] = useState(false);
   const navigate = useNavigate()
   const userName = "johan.amaya@hotmail.com";
   const password = "123456";
 
 
   function login(userData) {
-    if (userData.password === password && userData.userName === userName) {
-      setAccess(true);
+    if (userData?.password === password && userData?.userName === userName) {
+      logIn()
       navigate("/home");
     }
   }
 
   useEffect(() => {
-    !access && navigate("/");
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [access]);
+    if (!loginG) {
+      navigate("/");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [loginG]);
+
 
   const onSearch = (id) => {
     fetch(`https://rickandmortyapi.com/api/character/${id}`)
@@ -134,9 +139,22 @@ function App() {
         }></Route>
 
       </Routes>
-        <Footer checkLogin={checkLogin()}></Footer>
+      <Footer checkLogin={checkLogin()}></Footer>
     </Container>
   )
 }
 
-export default App
+const mapStateToProps = (state) => {
+  return {
+    loginG: state.loginG
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    logOut: () => dispatch(logOut()),
+    logIn: () => dispatch(logIn()),
+  }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
