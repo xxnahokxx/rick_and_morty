@@ -37,6 +37,7 @@ export const Nav = styled.div`
   background-image: url('../public/baner.png');
   position: sticky;
   top: 0;
+  z-index: 1000;
   transition: all 1s;
 
   div.navContent {
@@ -49,6 +50,7 @@ export const Nav = styled.div`
 
 
     @media (max-width: 1080px){
+      justify-content: center;
       max-width: 90%;
     }
     @media (max-width: 720px){
@@ -60,6 +62,16 @@ export const Nav = styled.div`
   div.destiny {
     display: flex;
     align-items: center;
+
+    .search-and-button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    @media (max-width: 600px) {
+      flex-direction: column ;
+    }
 
   }
 
@@ -211,3 +223,12 @@ export const Input = styled.input`
     color: #48c976;
     font-weight: bold;
 `;
+
+
+export const Session = styled.div`
+  width: 100%;
+  height: 100vh;
+  background-color: rgb(113, 10, 101, .9);
+`;
+
+

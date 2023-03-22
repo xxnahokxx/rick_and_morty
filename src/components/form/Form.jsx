@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import validation from "./validation";
 import logo from "../assets/img/logo.png";
-import {Formulario, Label, Input, Boton} from "../assets/styledComponent/styledComponents"
+import { Formulario, Label, Input, Boton, Session } from "../assets/styledComponent/styledComponents"
 
 
 
@@ -37,26 +37,28 @@ export default function Form(props) {
 
 
     return (
-        <div style={{ padding: "100px 0" }}>
+        <Session className="">
+            <div style={{ padding: "100px 0" }}>
 
-            <Formulario action="" onSubmit={handleSubmit}>
+                <Formulario action="" onSubmit={handleSubmit}>
 
-                <img src={logo} alt="logo" />
+                    <img src={logo} alt="logo" />
 
-                <div>
-                    <Label htmlFor="">EMAIL</Label>
-                    <Input key="email" name="userName" value={userData.userName} placeholder="Email..." type="email" onChange={handleChanges} />
-                    {errors.userName ? <p>{errors.userName}</p> : null}
-                </div>
+                    <div>
+                        <Label htmlFor="">EMAIL</Label>
+                        <Input key="email" name="userName" value={userData.userName} placeholder="Email..." type="email" onChange={handleChanges} />
+                        {errors.userName ? <p>{errors.userName}</p> : null}
+                    </div>
 
-                <div>
-                    <Label htmlFor="">PASSWORD</Label>
-                    <Input key="password" name="password" value={userData.password} type="password" onChange={handleChanges} />
-                    {errors.password ? <p>{errors.password}</p> : null}
-                </div>
+                    <div>
+                        <Label htmlFor="">PASSWORD</Label>
+                        <Input key="password" name="password" value={userData.password} type="password" onChange={handleChanges} />
+                        {errors.password ? <p>{errors.password}</p> : null}
+                    </div>
 
-                <Boton type="submit">Submit</Boton>
-            </Formulario>
-        </div>
+                    <Boton type="submit">Submit</Boton>
+                </Formulario>
+            </div>
+        </Session>
     );
 }

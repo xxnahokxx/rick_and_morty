@@ -2,18 +2,18 @@ import React from "react";
 import SearchBar from "./SearchBar";
 import { NavLink } from "react-router-dom";
 import estilos from "./navbar.module.css";
-import {Nav, ConLogo, Titulo, Img, Boton} from "../assets/styledComponent/styledComponents.js"
+import { Nav, ConLogo, Titulo, Img, Boton } from "../assets/styledComponent/styledComponents.js"
 import { connect } from "react-redux";
 import { logOut } from "../../reducer/actions";
 
 
 
-const NavLinkMe = ({to, children, ...props}) => {
-    return (
-      <NavLink {...props} to={to} className={({ isActive }) => (isActive ? estilos.active : estilos.desactive)}>
-        {children}
-      </NavLink>
-    );
+const NavLinkMe = ({ to, children, ...props }) => {
+  return (
+    <NavLink {...props} to={to} className={({ isActive }) => (isActive ? estilos.active : estilos.desactive)}>
+      {children}
+    </NavLink>
+  );
 };
 
 
@@ -34,11 +34,15 @@ function Navbar(props) {
             </ConLogo>
           </NavLink>
           <div className="destiny">
-            <NavLinkMe to="/home">Home</NavLinkMe>
-            <NavLinkMe to="/about">About</NavLinkMe>
-            <NavLinkMe to="/favorites">Favorites</NavLinkMe>
-            <SearchBar onSearch={(el) => props.onSearch(el)} />
-            {props.loginG ? <Boton onClick={props.logOut}>LogOut</Boton> : null}
+            <div className="">
+              <NavLinkMe to="/home">Home</NavLinkMe>
+              <NavLinkMe to="/about">About</NavLinkMe>
+              <NavLinkMe to="/favorites">Favorites</NavLinkMe>
+            </div>
+            <div className="search-and-button">
+              <SearchBar onSearch={(el) => props.onSearch(el)} />
+              {props.loginG ? <Boton onClick={props.logOut}>LogOut</Boton> : null}
+            </div>
           </div>
         </div>
       </Nav>
@@ -55,7 +59,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    logOut:() => dispatch(logOut()),
+    logOut: () => dispatch(logOut()),
   }
 };
 

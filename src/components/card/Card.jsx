@@ -26,6 +26,19 @@ const Tarjeta = styled.div`
    div.des {
       color: white;
    }
+   @media (max-width: 720px) {
+      .des {
+         height: 60px;
+         display: flex;
+         color: #ffffff;
+         flex-wrap: wrap;
+         justify-content: flex-start;
+         h2 {
+            color: white;
+            padding: 0;
+         }
+      }
+   }
 
    &:hover {
       /* width: 405px; */
@@ -59,6 +72,11 @@ const Body = styled.div`
    position: relative;
    background-color: #0a025a85;
    transition: all .5s;
+
+   @media (max-width: 720px) {
+      height: 60px;
+   }
+
 `;
 
 const Nombre = styled.h2`
