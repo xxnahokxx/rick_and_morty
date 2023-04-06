@@ -78,7 +78,7 @@ export default function Detail(props) {
     const volver = () => navigate(-1);
 
     useEffect(() => {
-        fetch(`https://rickandmortyapi.com/api/character/${detailId}`)
+        fetch(`http://localhost:3001/rickandmorty/character/${detailId}`)
             .then((res) => res.json())
             .then((data) => {
                 // console.log(data);

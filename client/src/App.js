@@ -65,13 +65,15 @@ function App({ loginG, logIn }) {
 
 
   const onSearch = (id) => {
-    fetch(`https://rickandmortyapi.com/api/character/${id}`)
+    fetch(`http://localhost:3001/rickandmorty/character/${id}`)
       .then((response) => response.json())
       .then((data) => {
         if (data.name && characters.filter((el) => el.id === data.id).length === 0) {
           setCharacters([...characters, data]);
-        } else {
-          window.alert('No hay personajes con ese ID o ya existe.');
+        } else if(characters.filter((el) => el.id === data.id).length !== 0){
+          window.alert("Personaje ya seleccionado");
+        }else {
+          window.alert(data.error);
         }
       });
   };
