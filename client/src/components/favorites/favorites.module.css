@@ -1,0 +1,50 @@
+.filtro1 {
+  align-self: flex-start;
+  position: absolute;
+  top: 120px;
+  left: 40%;
+  background: #141414;
+  color: #49c877;
+  border-radius: 8px;
+  border: 2px solid #49c877;
+  outline: 2px solid #141414;
+  text-align: center;
+}
+
+.filtro2 {
+  left: 50%;
+  align-self: flex-start;
+  position: absolute;
+  top: 120px;
+  background: #141414;
+  color: #49c877;
+  border-radius: 8px;
+  border: 2px solid #49c877;
+  outline: 2px solid #141414;
+  text-align: center;
+}
+
+@media (max-width: 1200px) {
+  .filtro1 {
+    left: 40%;
+  }
+  .filtro2 {
+    left: 60%;
+  }
+}
+@media (max-width: 992px) {
+  .filtro1 {
+    left: 30%;
+  }
+  .filtro2 {
+    left: 60%;
+  }
+}
+@media (max-width: 576px) {
+  .filtro1 {
+    left: 20%;
+  }
+  .filtro2 {
+    left: 60%;
+  }
+}
