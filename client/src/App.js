@@ -73,7 +73,9 @@ function App({ loginG, logIn }) {
         } else if(characters.filter((el) => el.id === data.id).length !== 0){
           window.alert("Personaje ya seleccionado");
         }else {
-          window.alert(data.error);
+          // console.log(data);
+          // window.alert(data.error);
+          window.alert(data);
         }
       });
   };
