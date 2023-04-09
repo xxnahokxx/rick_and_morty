@@ -3,6 +3,7 @@ import styled from "styled-components";
 import icon from "../assets/img/logo.png"
 
 const Container = styled.div`
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -20,6 +21,7 @@ const Container = styled.div`
     outline: 3px solid rgb(10, 4, 4);
     border-radius: 80px;
     overflow: hidden;
+    animation: selection 2s linear normal;
 
     h1 {
         position: sticky;
@@ -27,6 +29,16 @@ const Container = styled.div`
         top: 90%;
         text-shadow: 0 0 3px rgb(0, 0, 0) ;
     }
+
+
+    @keyframes selection {
+      from{
+         opacity: 0;
+      }
+      to {
+         opacity: 1;
+      }
+   }
 `;
 
 const Logo = styled.img`
@@ -35,6 +47,17 @@ const Logo = styled.img`
     position: relative;
     top: 80px;
     margin: 0 auto;
+    z-index: 3;
+    animation: selection 2s linear normal;
+
+    @keyframes selection {
+      from{
+         opacity: 0;
+      }
+      to {
+         opacity: 1;
+      }
+   }
 `
 
 export default function About(props) {

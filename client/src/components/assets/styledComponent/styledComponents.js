@@ -34,7 +34,7 @@ export const Nav = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
-  background-color: rgb(20, 20, 20, .8);
+  background-color: rgb(61, 56, 35, .5);
   background-image: url('../public/baner.png');
   position: sticky;
   top: 0;
@@ -130,12 +130,12 @@ export const Titulo = styled.h1`
 `;
 
 export const FavOn = styled.a`
-  color: rgb(72, 201, 118);
+  color: rgb(243, 32, 220);
   margin: 5px 0 0 5px;
 `
 
 export const FavOff = styled.a`
-  color: white;
+  color: rgb(255, 33, 201) /* white */;
   margin: 5px 0 0 5px;
 `
 
@@ -229,7 +229,17 @@ export const Input = styled.input`
 export const Session = styled.div`
   width: 100%;
   height: 100vh;
-  background-color: rgb(113, 10, 101, .9);
+  background-color: rgb(61, 56, 35, .5);
+  animation: selection 2s linear normal;
+
+  @keyframes selection {
+      from{
+         opacity: 0;
+      }
+      to {
+         opacity: 1;
+      }
+   }
 `;
 
 

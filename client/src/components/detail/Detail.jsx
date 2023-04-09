@@ -7,6 +7,17 @@ const Container = styled.div`
     margin-top: 40px;
     text-align: center;
     color: #5fff96;
+    z-index: 5;
+    animation: selection 2s linear normal;
+
+   @keyframes selection {
+      from{
+         opacity: 0;
+      }
+      to {
+         opacity: 1;
+      }
+   }
 
     h1 {
         text-align: left;
