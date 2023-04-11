@@ -41,6 +41,13 @@ const Container = styled.div`
   align-items: center;
   `; */
 
+const ContCube = styled.div`
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    overflow-x: hidden;
+  `
 
 
 function App({ loginG, logIn }) {
@@ -73,9 +80,9 @@ function App({ loginG, logIn }) {
       .then((data) => {
         if (data.name && characters.filter((el) => el.id === data.id).length === 0) {
           setCharacters([...characters, data]);
-        } else if(characters.filter((el) => el.id === data.id).length !== 0){
+        } else if (characters.filter((el) => el.id === data.id).length !== 0) {
           window.alert("Personaje ya seleccionado");
-        }else {
+        } else {
           // console.log(data);
           // window.alert(data.error);
           window.alert(data);
@@ -106,9 +113,10 @@ function App({ loginG, logIn }) {
 
 
       <Navbar onSearch={onSearch} checkLogin={checkLogin()} />
-
-      <Cube checkLogin={checkLogin()} />
-      <Cube2 checkLogin={checkLogin()} />
+      <ContCube>
+        <Cube checkLogin={checkLogin()} />
+        <Cube2 checkLogin={checkLogin()} />
+      </ContCube>
 
       <Routes>
 

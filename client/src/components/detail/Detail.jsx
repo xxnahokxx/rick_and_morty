@@ -20,9 +20,10 @@ const Container = styled.div`
    }
 
     h1 {
-        text-align: left;
+        text-align: center;
         display: inline-block;
         font-size: 2.5rem;
+        width: 100%;
     }
 
     > div {
