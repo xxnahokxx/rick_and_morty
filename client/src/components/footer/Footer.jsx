@@ -99,7 +99,7 @@ export default function Footer(props) {
                     </div>
                     <div>
                         <ul>
-                            <li><a className={style.link} href="https://xxnahokxx.github.io" target="_blank" > My projects </a></li>
+                            <li><a className={style.link} href="https://xxnahokxx.github.io" target="_blank" rel="noreferrer" > My projects </a></li>
                         </ul>
                     </div>
                 </Content>

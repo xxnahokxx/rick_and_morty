@@ -8,20 +8,14 @@ const initialState = {
 };
 
 const reducer = (state = initialState, { type, payload }) => {
+
     switch (type) {
 
         case ADD_FAVORITE:
-            return {
-                ...state, allCharacters: [...state.allCharacters, payload],
-                myFavorites: [...state.allCharacters, payload]
-            }
+            return { ...state, myFavorites: payload, allCharacters: payload };
 
         case DELETE_FAVORITE:
-            const filtered = state.allCharacters.filter((el) => el.id !== payload);
-            return {
-                ...state, myFavorites: filtered,
-                allCharacters: filtered
-            }
+            return { ...state, myFavorites: payload, allCharacters: payload };
 
         case LOG_OUT:
             const logOut = false;
@@ -49,13 +43,13 @@ const reducer = (state = initialState, { type, payload }) => {
 
         case ORDER:
             const orderFavorite = [...state.myFavorites].sort((a, b) => {
-                    if (a.id > b.id) {
-                        return payload === "Ascendente" ? 1 : -1
-                    } else if (a.id < b.id) {
-                        return payload === "Descendente" ? 1 : -1
-                    } else {
-                        return 0
-                    }
+                if (a.id > b.id) {
+                    return payload === "Ascendente" ? 1 : -1
+                } else if (a.id < b.id) {
+                    return payload === "Descendente" ? 1 : -1
+                } else {
+                    return 0
+                }
             });
 
             return {

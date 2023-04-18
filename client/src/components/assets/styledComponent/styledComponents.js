@@ -202,8 +202,8 @@ export const Boton = styled.button`
     background: #141414;
     color: #49c877;
     font-weight: bold;
-    cursor: pointer;
     transition: all .5s;
+    cursor: pointer;
 
     &:hover {
         background: #49c877;
@@ -231,6 +231,7 @@ export const Session = styled.div`
   height: 100vh;
   background-color: rgb(61, 56, 35, .5);
   animation: selection 2s linear normal;
+  z-index: 3000;
 
   @keyframes selection {
       from{

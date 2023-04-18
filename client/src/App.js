@@ -14,6 +14,7 @@ import { connect } from 'react-redux';
 import { logIn, logOut } from './reducer/actions';
 import Cube from './components/cube/Cube';
 import Cube2 from './components/cube2/Cube2';
+import axios from "axios";
 
 
 
@@ -55,16 +56,31 @@ function App({ loginG, logIn }) {
 
   const [characters, setCharacters] = useState([]);
   const navigate = useNavigate()
-  const userName = "johan.amaya@hotmail.com";
-  const password = "123456";
+  // const userName = "johan.amaya@hotmail.com";
+  // const password = "123456";
 
-
+  /*
+    function login(userData) {
+      if (userData?.password === password && userData?.userName === userName) {
+        logIn()
+        navigate("/home");
+      }
+    } */
   function login(userData) {
-    if (userData?.password === password && userData?.userName === userName) {
-      logIn()
-      navigate("/home");
-    }
+    const { userName, password } = userData;
+    const URL = 'http://localhost:3001/rickandmorty/login/';
+    axios(URL + `?email=${userName}&password=${password}`).then(({ data }) => {
+      const { access } = data;
+      console.log(access);
+      access && logIn();
+      console.log(loginG)
+      access && navigate('/home');
+    });
   }
+
+
+
+
 
   useEffect(() => {
     if (!loginG) {

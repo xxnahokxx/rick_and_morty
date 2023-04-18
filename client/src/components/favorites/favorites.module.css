@@ -48,3 +48,7 @@
     left: 60%;
   }
 }
+
+.prueba {
+  z-index: 8000;
+}

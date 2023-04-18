@@ -1,4 +1,31 @@
-const axios = require("axios");
+const URL = "https://rickandmortyapi.com/api/character/";
+const axios = require(`axios`);
+// const express = require(`../index`);
+
+const getCharById = (req, res) => {
+    const { id } = req.params;
+    axios.get(URL + id)
+        .then(response => {
+            try {
+                const { id, name, status, species, origin, gender, image } = response.data;
+                res.status(200).json({ id, name, status, species, origin, gender, image })
+            } catch (error) {
+                res.status(404).send(`Not Found: ${error.message}`);
+            }
+        })
+        .catch(err => {
+            res.status(500).send(err.message);
+        })
+};
+
+
+module.exports = getCharById;
+
+
+
+// antigua version de conexion al controlador.
+
+/* const axios = require("axios");
 
 
 const getCharById = (res, id) => {
@@ -16,5 +43,5 @@ const getCharById = (res, id) => {
         })
 }
 
-module.exports = getCharById
+module.exports = getCharById */
 
