@@ -21,6 +21,10 @@ function Navbar(props) {
 
   const log = props.checkLogin
 
+  const random = (max) => {
+    return Math.floor(Math.random() * max);
+  }
+
   if (log) {
     return (
       <Nav>
@@ -40,6 +44,7 @@ function Navbar(props) {
               <NavLinkMe to="/favorites">Favorites</NavLinkMe>
             </div>
             <div className="search-and-button">
+              <Boton onClick={() => props.onSearch(random(825))}>Random</Boton>
               <SearchBar onSearch={(el) => props.onSearch(el)} />
               {props.loginG ? <Boton onClick={props.logOut}>LogOut</Boton> : null}
             </div>

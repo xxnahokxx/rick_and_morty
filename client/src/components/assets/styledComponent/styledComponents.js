@@ -67,7 +67,11 @@ export const Nav = styled.div`
     .search-and-button {
       display: flex;
       align-items: center;
-      justify-content: space-between;
+      /* justify-content: space-between; */
+      flex-wrap: wrap;
+      button {
+        margin: 0 auto;
+      }
     }
 
     @media (max-width: 600px) {
@@ -204,6 +208,7 @@ export const Boton = styled.button`
     font-weight: bold;
     transition: all .5s;
     cursor: pointer;
+    margin: 0 5px;
 
     &:hover {
         background: #49c877;

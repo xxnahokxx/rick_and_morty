@@ -5,6 +5,7 @@ const Container = styled.div`
    padding: 10px 0 10px 0;
    display: flex;
    justify-content: flex-end;
+   margin: 0 5px;
 `;
 
 const Entrada = styled.input`
