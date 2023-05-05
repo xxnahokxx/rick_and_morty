@@ -1,42 +1,77 @@
 import { ADD_FAVORITE, DELETE_FAVORITE, LOG_OUT, LOG_IN, FILTER, ORDER } from "./types";
 import axios from "axios";
+const endpoint = "http://localhost:3001/rickandmorty/fav";
+
 
 export const addFavorite = (character) => {
-
-    const endpoint = 'http://localhost:3001/rickandmorty/fav';
-    return (dispatch) => {
-        axios.post(endpoint, character).then(({ data }) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.post(endpoint, character); //
             return dispatch({
                 type: ADD_FAVORITE,
                 payload: data,
             });
-        });
-    };
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+}
 
-    // return {
-    //     type: ADD_FAVORITE,
-    //     payload: character,
-    // }
-};
+
+// con promesas ===
+// export const addFavorite = (character) => {
+
+//     const endpoint = 'http://localhost:3001/rickandmorty/fav';
+//     return (dispatch) => {
+//         axios.post(endpoint, character).then(({ data }) => {
+//             return dispatch({
+//                 type: ADD_FAVORITE,
+//                 payload: data,
+//             });
+//         });
+//     };
+
+//     // return {
+//     //     type: ADD_FAVORITE,
+//     //     payload: character,
+//     // }
+// };
+
 
 export const deleteFavorite = (id) => {
+    return async (dispatch) => {
+        try {
+            const { data } = await axios.delete(`${endpoint}/${id}`);
+            return dispatch({
+                type: DELETE_FAVORITE,
+                payload: data,
+            })
+        } catch (error) {
+            console.log(error.message);
+        }
+    }
+}
 
-    const endpoint = 'http://localhost:3001/rickandmorty/fav/' + id;
-   return (dispatch) => {
-      axios.delete(endpoint).then(({ data }) => {
-         return dispatch({
-            type: DELETE_FAVORITE,
-            payload: data,
-      });
-      });
-   };
+
+// con promesas ===
+// export const deleteFavorite = (id) => {
+
+//     const endpoint = 'http://localhost:3001/rickandmorty/fav/' + id;
+//     return (dispatch) => {
+//         axios.delete(endpoint).then(({ data }) => {
+//             return dispatch({
+//                 type: DELETE_FAVORITE,
+//                 payload: data,
+//             });
+//         });
+//     };
 
 
-    // return {
-    //     type: DELETE_FAVORITE,
-    //     payload: id,
-    // }
-};
+//     // return {
+//     //     type: DELETE_FAVORITE,
+//     //     payload: id,
+//     // }
+// };
 
 export const logOut = () => {
     return {
